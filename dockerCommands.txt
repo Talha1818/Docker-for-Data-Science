@@ -1,0 +1,29 @@
+# Build a Docker image from the Dockerfile in the current directory and name it "testproject"
+docker build -t testproject .
+
+# List all local Docker images
+docker images
+
+# Log in to Docker Hub (you'll need your Docker Hub credentials)
+docker login
+
+# Run the "testproject" container, mapping port 5000 inside the container to port 5000 on the host
+docker run -p 5000:5000 testproject
+
+# Forcefully remove the "testproject" image even if it's used by stopped containers
+docker image rm -f testproject
+
+# Rebuild the image and tag it as "talha1818/testproject" (username/repository format)
+docker build -t talha1818/testproject .
+
+# Create a new image tag "testflaskproject1" from the existing "testflaskproject"
+docker tag talha1818/testflaskproject talha1818/testflaskproject1
+
+# Push the image "testflaskproject" with the "latest" tag to Docker Hub
+docker push talha1818/testflaskproject:latest
+
+# Pull the image "testflaskproject" with the "latest" tag from Docker Hub
+docker pull talha1818/testflaskproject
+
+# Run the container in detached mode (-d), mapping port 5000 of container to port 5000 of the host
+docker run -d -p 5000:5000 talha1818/testflaskproject:latest
